@@ -10,28 +10,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mucasantos.cursomc.domain.Categoria;
+import com.mucasantos.cursomc.domain.Cliente;
 import com.mucasantos.cursomc.services.CategoriaService;
+import com.mucasantos.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResource {
+@RequestMapping(value="/")
+public class ClienteResource {
 
 	@Autowired
-	private CategoriaService service;
+	private ClienteService service;
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="cliente/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		Categoria obj =  service.buscar(id);
+		Cliente obj =  service.buscar(id);
 		
 		return ResponseEntity.ok().body(obj);
 
 	}
 	
-	@RequestMapping( method=RequestMethod.GET)
+	@RequestMapping(value="clientes", method=RequestMethod.GET)
 	public ResponseEntity<?> findAll() {
 		
-		List<Categoria> obj =  service.buscarTodos();
+		List<Cliente> obj =  service.buscarTodos();
 		
 		return ResponseEntity.ok().body(obj);
 
